@@ -33,13 +33,15 @@ public class Case02 {
 		closeDriver();
 	}
 
+	/**
+	 * トップページへアクセスし、
+	 * ログイン画面が表示されることおよび画面タイトルを確認する。
+	 */
 	@Test
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
-		// TODO ここに追加
 
-		//ケース01 髙道
 		goTo("http://localhost:8080/lms");
 
 		String title = webDriver.getTitle();
@@ -50,13 +52,15 @@ public class Case02 {
 		});
 	}
 
+	/**
+	* DBに登録されていないユーザーでログインを行い、
+	* 「* ログインに失敗しました。」のエラーメッセージが表示されることを確認する。
+	*/
 	@Test
 	@Order(2)
 	@DisplayName("テスト02 DBに登録されていないユーザーでログイン")
 	void test02() {
 
-		//ケース02 髙道
-		goTo("http://localhost:8080/lms");
 		webDriver.findElement(By.name("loginId")).sendKeys("test111");
 		webDriver.findElement(By.name("password")).sendKeys("testpassword");
 		webDriver.findElement(By.cssSelector("input[type='submit']")).click();
