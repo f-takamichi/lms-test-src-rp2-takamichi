@@ -33,12 +33,15 @@ public class Case03 {
 		closeDriver();
 	}
 
+	/**
+	 * トップページへアクセスし、
+	 * ログイン画面が表示されることおよび画面タイトルを確認する。
+	 */
 	@Test
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
 
-		//ケース03 髙道
 		goTo("http://localhost:8080/lms");
 
 		String title = webDriver.getTitle();
@@ -49,12 +52,15 @@ public class Case03 {
 		});
 	}
 
+	/**
+	 * 初回ログイン済みの受講生ユーザーでログインし、
+	 * コース詳細画面が表示されることを確認する。
+	 */
 	@Test
 	@Order(2)
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
 
-		//ケース03 髙道
 		webDriver.findElement(By.id("loginId")).sendKeys("StudentAA01");
 		webDriver.findElement(By.id("password")).sendKeys("StudentAA011");
 
