@@ -56,6 +56,7 @@ public class Case02 {
 	void test02() {
 
 		//ケース02 髙道
+		goTo("http://localhost:8080/lms");
 		webDriver.findElement(By.name("loginId")).sendKeys("test111");
 		webDriver.findElement(By.name("password")).sendKeys("testpassword");
 		webDriver.findElement(By.cssSelector("input[type='submit']")).click();
@@ -64,10 +65,8 @@ public class Case02 {
 
 		assertEquals("* ログインに失敗しました。", error);
 
-		System.out.println(error);
-
-		//		getEvidence(new Object() {
-		//		});
+		getEvidence(new Object() {
+		});
 
 	}
 
