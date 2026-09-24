@@ -10,6 +10,7 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.By;
 
 /**
  * 結合テスト ログイン機能①
@@ -53,7 +54,20 @@ public class Case02 {
 	@Order(2)
 	@DisplayName("テスト02 DBに登録されていないユーザーでログイン")
 	void test02() {
-		// TODO ここに追加
+
+		//ケース02 髙道
+		webDriver.findElement(By.name("loginId")).sendKeys("test111");
+		webDriver.findElement(By.name("password")).sendKeys("testpassword");
+		webDriver.findElement(By.cssSelector("input[type='submit']")).click();
+
+		String error = webDriver.findElement(By.className("error")).getText();
+
+		assertEquals("* ログインに失敗しました。", error);
+
+		System.out.println(error);
+
+		//		getEvidence(new Object() {
+		//		});
 
 	}
 
