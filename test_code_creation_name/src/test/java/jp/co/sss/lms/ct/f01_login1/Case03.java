@@ -54,7 +54,7 @@ public class Case03 {
 
 	/**
 	 * 初回ログイン済みの受講生ユーザーでログインし、
-	 * コース詳細画面が表示されることを確認する。
+	 * コース詳細画面が表示されることを確認する。 
 	 */
 	@Test
 	@Order(2)
@@ -65,6 +65,8 @@ public class Case03 {
 		webDriver.findElement(By.id("password")).sendKeys("StudentAA011");
 
 		webDriver.findElement(By.cssSelector("input[type='submit']")).click();
+
+		visibilityTimeout(By.tagName("h2"), 3);
 
 		String title = webDriver.getTitle();
 		assertEquals("コース詳細 | LMS", title);

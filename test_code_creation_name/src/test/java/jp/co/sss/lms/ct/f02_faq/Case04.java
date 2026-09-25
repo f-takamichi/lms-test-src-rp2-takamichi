@@ -45,7 +45,6 @@ public class Case04 {
 		goTo("http://localhost:8080/lms");
 
 		String title = webDriver.getTitle();
-
 		assertEquals("ログイン | LMS", title);
 
 		getEvidence(new Object() {
@@ -66,25 +65,69 @@ public class Case04 {
 
 		webDriver.findElement(By.cssSelector("input[type='submit']")).click();
 
+		visibilityTimeout(By.tagName("h2"), 3);
+
 		String title = webDriver.getTitle();
 		assertEquals("コース詳細 | LMS", title);
 
 		getEvidence(new Object() {
 		});
+
 	}
 
+	/**
+	 * 上部メニューの「ヘルプ」リンクから
+	 * ヘルプ画面へ遷移することを確認する。
+	 */
 	@Test
 	@Order(3)
 	@DisplayName("テスト03 上部メニューの「ヘルプ」リンクからヘルプ画面に遷移")
 	void test03() {
-		// TODO ここに追加
+
+		visibilityTimeout(By.className("dropdown-toggle"), 3);
+
+		webDriver.findElement(By.className("dropdown-toggle")).click();
+
+		visibilityTimeout(By.linkText("ヘルプ"), 3);
+
+		webDriver.findElement(By.linkText("ヘルプ")).click();
+
+		visibilityTimeout(By.tagName("h2"), 3);
+
+		String title = webDriver.getTitle();
+		assertEquals("ヘルプ | LMS", title);
+
+		getEvidence(new Object() {
+
+		});
 	}
 
+	/**
+	 * よくある質問画面が表示されることを確認する。
+	 */
 	@Test
 	@Order(4)
 	@DisplayName("テスト04 「よくある質問」リンクからよくある質問画面を別タブに開く")
 	void test04() {
-		// TODO ここに追加
-	}
 
+		String currentWindow = webDriver.getWindowHandle();
+
+		webDriver.findElement(By.linkText("よくある質問")).click();
+
+		for (String windowHandle : webDriver.getWindowHandles()) {
+			if (!windowHandle.equals(currentWindow)) {
+				webDriver.switchTo().window(windowHandle);
+				break;
+			}
+		}
+
+		visibilityTimeout(By.tagName("h2"), 3);
+
+		String title = webDriver.getTitle();
+		assertEquals("よくある質問 | LMS", title);
+
+		getEvidence(new Object() {
+		});
+
+	}
 }
